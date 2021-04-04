@@ -42,24 +42,32 @@ void print_buffer(uint8_t *buffer, int size)
     }
 }
 
-void read_bin_file(char *fileName)
+void print_buffer_for_c(uint8_t *buffer, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d, ", buffer[i]);
+    }
+    printf("\n");
+}
+
+void read_bin_file(char *fileName, int dir)
 {
     static const int BUFFER_SIZE = 8;
     int read_bytes = 0;
     int i;
     FILE *file;
     uint8_t buffer[BUFFER_SIZE];
-
     file = fopen(fileName, "rb");
     if (file)
     {
         while ((read_bytes = fread(buffer, 1, BUFFER_SIZE, file)) == BUFFER_SIZE)
         {
-            print_buffer(buffer, read_bytes);
+            dir==0?print_buffer(buffer, read_bytes):print_buffer_for_c(buffer, read_bytes);
         };
         if (read_bin_file > 0)
         {
-            print_buffer(buffer, read_bytes);
+            dir==0?print_buffer(buffer, read_bytes):print_buffer_for_c(buffer, read_bytes);
         }
     }
     fclose(file);
@@ -83,7 +91,8 @@ int main(int argc, char *argv[])
         }
         tmp_binary[8] = 0;
         printf("File to parse: %s\n", argv[1]);
-        read_bin_file(argv[1]);
+        read_bin_file(argv[1],0);
+        read_bin_file(argv[1],1);
     }
     return result;
 }

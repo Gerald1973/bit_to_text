@@ -4,7 +4,7 @@
 
 Use this program to represent some characters set from the memory of an old computer (ex. Commodore 64).  
 
-### example
+## Usage
 
 ```shell
 ./bittext ../Downloads/characters.901225-01.bin
@@ -27,5 +27,18 @@ Use this program to represent some characters set from the memory of an old comp
 0c8e 03214 249 f9 *****..*
 0c8f 03215 249 f9 *****..*
 
+...
+255, 255, 131, 153, 153, 131, 159, 159, 
+255, 255, 193, 153, 153, 193, 249, 249, 
+...
+
 ```
 
+The first part represents the binary file in text by bit.  
+The second part represents the binary file in text to be used at the array initialization.
+
+## Example
+
+```shell
+./bittext ../Downloads/characters.901225-01.bin > ../results.txt
+```
